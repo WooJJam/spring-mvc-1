@@ -1,9 +1,11 @@
 package WooJJam.springmvc.basic.request;
 
+import WooJJam.springmvc.basic.HelloData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,4 +90,19 @@ public class RequestParamController {
 
         return "ok";
     }
+
+    @RequestMapping("/model-attribute-v1")
+    @ResponseBody
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) throws IOException {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        return "ok";
+    }
+
+    @RequestMapping("/model-attribute-v2")
+    @ResponseBody
+    public String modelAttributeV2(HelloData helloData) throws IOException {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        return "ok";
+    }
+
 }
